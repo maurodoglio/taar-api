@@ -10,7 +10,7 @@ app = Flask(__name__)
 dockerflow = Dockerflow(app)
 
 
-@app.route('/recommendations/<uuid:client_id>/')
+@app.route('/api/recommendations/<uuid:client_id>/')
 def recommendations(client_id):
     response = app.response_class(
             response=json.dumps({'result': "Flask Dockerized"}),

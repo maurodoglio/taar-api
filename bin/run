@@ -32,12 +32,11 @@ wait_for() {
 
 case $1 in
   web)
-    newrelic-admin run-python manage.py migrate --noinput
-    exec newrelic-admin run-program gunicorn taar_api.wsgi:application -b 0.0.0.0:${PORT} --workers 4 --access-logfile -
+    #exec newrelic-admin run-program gunicorn taar_api.app:app -b 0.0.0.0:${PORT} --workers 4 --access-logfile -
+    exec python taar_api/app.py # TODO: need to be able to pass in port to flask
     ;;
   web-dev)
-    python manage.py migrate --noinput
-    exec python manage.py runserver 0.0.0.0:${PORT}
+    exec python taar_api/app.py # TODO: need to be able to pass in port to flask
     ;;
   test)
     coverage erase
